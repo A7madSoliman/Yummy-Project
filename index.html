@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="./Assets/imgs/logo.png"
+      type="image/x-icon"
+    />
+    <!-- ===========> Animate.CSS  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- ===========> Font awesome library Icon -->
+    <link rel="stylesheet" href="./CSS/all.min.css" />
+    <!-- ===========> Bootstrap  -->
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css" />
+    <!-- ===========> Main Stylesheet  -->
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <title>Yummy Exam js</title>
+  </head>
+  <body>
+    <!-- &-- Loading Screen -->
+    <div
+      class="loading-screen position-fixed top-0 start-0 end-0 bottom-0 bg-black justify-content-center align-items-center"
+    >
+      <i class="loader"></i>
+    </div>
+
+    <!--~ Side Nav -->
+
+    <div class="side-nav">
+      <div class="side-nav-inner p-3 bg-black position-relative">
+        <div class="profile mb-5 text-center">
+          <h1>Yummy</h1>
+        </div>
+
+        <ul class="list-unstyled mb-0 overflow-hidden">
+          <li
+            onclick="showSearchInputs(); closeSideNav()"
+            id="searchLink"
+            class="rounded-2 py-2 mb-2"
+          >
+            <i class="fa-solid fa-magnifying-glass me-3"></i
+            ><span class="fs-5">Search</span>
+          </li>
+
+          <li
+            onclick="getCategories(); closeSideNav()"
+            id="categoriesLink"
+            class="rounded-2 py-2 mb-2"
+          >
+            <i class="fa-solid fa-layer-group me-3"></i
+            ><span class="fs-5">Categories</span>
+          </li>
+
+          <li
+            onclick="getArea(); closeSideNav()"
+            id="areaLink"
+            class="rounded-2 py-2 mb-2"
+          >
+            <i class="fa-solid fa-earth-americas me-3"></i
+            ><span class="fs-5">Area</span>
+          </li>
+
+          <li
+            onclick="getIngredients(); closeSideNav()"
+            id="ingredientsLink"
+            class="rounded-2 py-2"
+          >
+            <i class="fa-solid fa-burger me-3"></i
+            ><span class="fs-5">Ingredients</span>
+          </li>
+
+          <li
+            onclick="showContacts(); closeSideNav()"
+            id="contactUs"
+            class="rounded-2 py-2"
+          >
+            <i class="fa-solid fa-share-nodes me-3"></i
+            ><span class="fs-5">Contact us</span>
+          </li>
+        </ul>
+
+        <div class="nav-footer position-absolute bottom-0 mb-3">
+          <div class="icons">
+            <i class="fa-brands fa-facebook me-1"></i>
+            <i class="fa-brands fa-x-twitter me-1"></i>
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <div class="footer">
+            <p>Copyright Â© 2019 All Rights <br />Reserved.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="menu" class="rounded-end-4 bg-black">
+        <img id="menuLogo" src="./Assets/imgs/logo.png" alt="logo" />
+        <i id="openIcon" class="menuIcon fa-solid fa-bars fa-2x"></i>
+        <i id="closeIcon" class="menuIcon fa-solid fa-xmark fa-2x"></i>
+        <div id="contactIcon" class="text-center fs-5">
+          <i class="fa-solid fa-globe mb-2"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+    </div>
+
+    <!--! Main Content -->
+
+    <div class="container w-75" id="searchContainer"></div>
+    <div class="position-relative">
+      <div
+        class="inner-loading-screen top-0 start-0 end-0 bottom-0 justify-content-center align-items-center"
+      >
+        <i class="loader"></i>
+      </div>
+
+      <div class="container">
+        <div class="row py-5 g-4" id="rowData"></div>
+      </div>
+    </div>
+
+    <!-- <div
+          class="loading position-fixed top-0 start-0 end-0 bottom-0 bg-black justify-content-center align-items-center"
+        >
+          <span class="loader"></span>
+        </div> -->
+    <!-- <div id="rowData" class="row py-5 g-4"> -->
+    <!-- <div class="col-md-3">
+        <div
+          class="meal position-relative overflow-hidden rounded-2 cursor-pointer"
+        >
+          <img
+            class="w-100"
+            src="./Assets/imgs/58oia61564916529.jpg"
+            alt=""
+          />
+          <div
+            class="meal-baba position-absolute d-flex align-items-center justify-content-center text-white p-2"
+          >
+            <h3>Cobra</h3>
+          </div>
+        </div>
+      </div> -->
+
+    <!-- <div class="col-md-3">
+        <div
+          class="meal position-relative overflow-hidden rounded-2 cursor-pointer"
+        >
+          <img
+            class="w-100"
+            src="./Assets/imgs/58oia61564916529.jpg"
+            alt=""
+          />
+          <div
+            class="meal-baba position-absolute d-flex flex-column align-items-center justify-content-center text-white p-2"
+          >
+            <h3>Cobra</h3>
+            <p class="text-center">
+              Beef is the culinary name for meat from cattle, particularly
+              skeletal muscle. Humans have been eating beef since prehistoric
+              times.[1]
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+    <!-- <div class="col-md-3">
+        <div class="text-center rounded-2 cursor-pointer">
+          <i class="fa-solid fa-house-laptop fa-4x"></i>
+          <h3>American</h3>
+        </div>
+      </div> -->
+
+    <!-- <div class="col-md-3">
+        <div class="text-center rounded-2 cursor-pointer">
+          <i class="fa-solid fa-drumstick-bite fa-4x"></i>
+          <h3>Chicken</h3>
+          <p>
+            The chicken is a type of domesticated fowl, a subspecies of the
+            red jungle fowl (Gallus gallus). It is one of
+          </p>
+        </div>
+      </div> -->
+    <script src="./Assets/js/jquery-3.7.1.js"></script>
+    <script src="./Assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./Assets/js/search.regex.js"></script>
+    <script src="./Assets/js/allapi.js"></script>
+    <script src="./Assets/js/displayeverything.js"></script>
+    <script src="./Assets/js/nav.loading.js"></script>
+  </body>
+</html>
